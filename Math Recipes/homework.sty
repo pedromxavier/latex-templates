@@ -1,0 +1,246 @@
+\ProvidesPackage{homework}
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{bbm}
+\RequirePackage{ifthen}
+\RequirePackage{mathrsfs}
+\RequirePackage{mathtools}
+\RequirePackage{suffix}
+\RequirePackage{textgreek}
+\RequirePackage{xifthen}
+
+%% Conditional Stuff
+\newcommand{\ifempty}[3]{%%
+	\def\temp{#1}%%
+	\ifx\temp\empty
+		#2%%
+	\else
+		#3%%
+	\fi
+}
+
+\newcommand{\ifequals}[3]{%%
+	\ifthenelse{\equal{#1}{#2}}{#3}{}
+}
+\newcommand{\case}[2]{#1 #2} % Dummy, so \renewcommand has something to overwrite...
+
+\newenvironment{switch}[1]{%%
+	\renewcommand{\case}{\ifequals{#1}}
+}{}
+
+%% Extra math aliases
+
+\newcommand{\Lim}[1]{%%
+	\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}
+}
+
+\newcommand{\Q}{%%
+	\ensuremath{\mathbb{Q}}
+}
+
+\newcommand{\R}{%%
+	\ensuremath{\mathbb{R}}
+}
+
+\newcommand{\C}{%%
+	\ensuremath{\mathbb{C}}
+}
+
+\newcommand{\N}{%%
+	\ensuremath{\mathbb{N}}
+}
+
+\newcommand{\Z}{%%
+	\ensuremath{\mathbb{Z}}
+}
+
+\newcommand{\vet}[1]{%%
+	\ensuremath{\mathbf{#1}}
+}
+
+
+
+\newcommand{\T}{%%
+	^\ensuremath{\text{\hspace{-1pt}\tiny\bfseries{T}}}
+}
+
+\newcommand{\pdot}{%%
+	\ensuremath{\,\cdot\,}
+}
+
+\newcommand{\ol}[1]{%%
+	\ensuremath{\overline{#1}}
+}
+
+%% imaginary unit
+\newcommand{\ii}{%%
+	\ensuremath{\mathbbm{i}}
+}
+
+\newcommand{\inner}[2]{\ensuremath{%%
+	\left\langle#1,#2\right\rangle
+}}
+
+\newcommand{\adj}{%%
+	\ensuremath{\text{viz}\,}
+}
+
+\newcommand{\set}[1]{\ensuremath{%%
+	\ifempty{#1}{%%
+		\varnothing
+	}{%%
+		\left\{#1\right\}
+	}
+}}
+
+\newcommand{\tuple}[1]{\ensuremath{%%
+	\ifempty{#1}{%%
+		(\,)
+	}{%%
+		\left(#1\right)
+	}
+}}
+
+\newcommand{\textsep}[1][\diamond]{%%
+	\begin{center}
+		\smallskip%
+		\ensuremath{#1#1#1}%%
+		\smallskip%
+	\end{center}
+}
+
+\newcommand{\tvet}[2]{%%
+	\tuple{#1_1, \dots, #1_#2}%%
+}
+
+%% derivatives
+\newcommand{\dd}[3][]{%%
+	\ensuremath{\frac{d^{#1}\, #2}{d\, #3^{#1}}}
+}
+
+\newcommand{\pp}[3][]{%%
+	\ensuremath{\frac{\partial^{#1}\, #2}{\partial\, #3^{#1}}}
+}
+
+%% renew qed square
+\renewcommand{\qedsymbol}{%%
+	\ensuremath{\blacksquare}
+}
+
+\newcommand{\avg}[1]{\ensuremath{%%
+	\left\langle#1\right\rangle%%
+}}
+
+\newcommand{\subbra}[1]{\ensuremath{%%
+	\Biggl[\,%%
+		#1%%
+	\Biggr]
+}}
+
+\newcommand{\norm}[2][\empty]{%%
+	\def\temp{#1}%%
+	\ensuremath{%%
+		\ifx\temp\empty%%
+			\left\lVert{#2}\right\rVert%%
+		\else%%
+			\if\temp0%%
+				\left|{#2}\right|%%
+			\else%%
+				\left\lVert{#2}\right\rVert_{\temp}%%
+			\fi
+		\fi
+	}
+	\let\temp\donothing%%
+}
+
+%% indicator function
+\newcommand{\I}[1]{\ensuremath{%%
+	\raisebox{-.25ex}{\ensuremath{\mathbb{I}}} \left\{{ #1 }\right\}
+}}
+
+%% Probability
+\renewcommand{\P}[1]{\ensuremath{%%
+	\raisebox{-.25ex}{\ensuremath{\mathbb{P}}} \left[{\, #1 \,}\right]
+}}
+
+%% Probability
+\newcommand{\E}[1]{\ensuremath{%%
+	\raisebox{-.25ex}{\ensuremath{\mathbb{E}}} \left[{\, #1 \,}\right]
+}}
+
+\newcommand{\void}{\ensuremath{%%
+	\square
+}}
+
+\newcommand{\given}[2]{\ensuremath{%%
+	\left(\, {#1}\, \middle|\, {#2}\, \right)
+}}
+
+\WithSuffix\newcommand\given*[2]{%%
+	\left.\hspace{-1pt}{#1}\, \middle|\, {#2}\hspace{-1pt}\right.
+}
+
+\newcommand{\logx}[2][\empty]{\ensuremath{%%
+	\ifempty{ #1 }{%
+		\log \left({ #2 }\right)%%
+	}{%
+		\log_{ #1 } \left({ #2 }\right)%%
+	}
+}}
+
+
+%% Quantum stuff
+\newcommand{\bra}[1]{%%
+	\left\langle{#1}\right|%%
+}
+
+\newcommand{\ket}[1]{%%
+	\left|{#1}\right\rangle%%
+}
+
+\newcommand{\braket}[2]{%%
+	\left\langle{#1}\middle|{#2}\right\rangle%%
+}
+
+%% Trigonometry
+\newcommand{\Sin}[1]{%%
+	\sin\left(#1\right)%
+}
+
+\newcommand{\Cos}[1]{%%
+	\cos\left(#1\right)%
+}
+
+\newcommand{\Tan}[1]{%%
+	\tan\left(#1\right)%
+}
+
+%% Linear & Algebra
+\newcommand{\Range}[1]{
+	\mathcal{R}\left(#1\right)%
+}
+
+\newcommand{\Null}[1]{
+	\mathcal{N}\left(#1\right)%
+}
+
+
+\newcommand{\Image}[1]{%%
+	\text{Im}\,{#1}%
+}
+
+\newcommand{\Rank}[1]{%%
+	\text{rank}\,{#1}%
+}
+
+\newcommand{\Kernel}[1]{%%
+	\text{ker}\,{#1}%
+}
+
+\newcommand{\vetx}[1]{
+	\ensuremath{\boldsymbol{#1}}%%
+}
+
+\endinput
